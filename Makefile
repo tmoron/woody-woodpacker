@@ -1,4 +1,4 @@
-NAME = ft_ping
+NAME = woody_woodpacker
 CC=clang
 FLAGS=-Werror -Wextra -Wall -g -Wno-unused-result -Qunused-arguments
 
