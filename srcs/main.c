@@ -1,16 +1,19 @@
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <errno.h>
+#include "woody_woodpacker.h"
+
+t_settings parse_options(int argc, char **argv)
+{
+    (void)argc;
+    (void)argv;
+	t_settings res;
+	ft_bzero(&res, sizeof(t_settings));
+	return(res);
+}
 
 int main(int argc, char **argv, char **envp)
 {
+	t_settings set;
 
-		(void) argc;
-		(void) argv;
-		(void) envp;
-		int fd = open("srcs/tmp/a.out", O_RDONLY);
-		fexecve(fd, argv + 1, );
-		perror("AAAAAAAAAA");
-	return(0);
+	set = parse_options(argc, argv);
+	(void)set;
+	(void)envp;
 }
