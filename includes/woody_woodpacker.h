@@ -5,7 +5,9 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include <stdint.h>
 #include "libft.h"
+#include "elf.h"
 
 typedef struct s_settings
 {
