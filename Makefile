@@ -6,7 +6,8 @@ SRCS_DIR = srcs
 INCLUDES = -Iincludes -Ilibft
 OBJS_DIR = .objs
 
-SRCS =	main.c
+SRCS =	main.c\
+		parsing.c
 
 OBJS =	$(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 

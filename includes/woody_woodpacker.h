@@ -9,7 +9,10 @@
 
 typedef struct s_settings
 {
-	int a;
+	char *key;
+	char *output;
 } t_settings;
+
+#include "parsing.h"
 
 #endif //WOODY_H
