@@ -1,19 +1,21 @@
 # parsing
 ## options parsing
-  [x] key  
-  [x] output name
+ - [x] key  
+ - [x] output name
 
-## executable
-  [ ] elf header
-  [ ] packer code
+## stub 
+ - [ ] compilation  
+ - [ ] read data put after the stub  
+ - [ ] give stub to packer  
 
 ## encryption
-  algorithm in assembly.
-  [ ] gen default key
-  [ ] chacha20
+ algorithm in assembly.
+ - [ ] gen default key  
+ - [ ] chacha20  
 
 ## compression
-  assembly also.
-  [ ] Deflate
+ assembly also.
+ - [ ] Deflate  
 
-
+## other
+ - [ ] benchmark ?  

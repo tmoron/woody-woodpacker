@@ -2,13 +2,12 @@ NAME = woody_woodpacker
 CC=clang
 FLAGS=-Werror -Wextra -Wall -g -Wno-unused-result -Qunused-arguments
 
-SRCS_DIR = srcs
+SRCS_DIR = srcs/packer
 INCLUDES = -Iincludes -Ilibft
 OBJS_DIR = .objs
 
 SRCS =	main.c\
-		parsing.c\
-		elf.c
+		parsing.c
 
 OBJS =	$(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
@@ -30,11 +29,6 @@ $(OBJS_DIR):
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
-#$(OBJS_DIR)/%.pch: $(INCLUDES_DIR)/%.h
-#	$(CC) $(FLAGS) -c $< -o $@
-
-setcap: $(NAME)
-	sudo setcap cap_net_raw+ep $(NAME)
 
 clean:
 	rm -rf $(OBJS_DIR) 
