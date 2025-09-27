@@ -4,9 +4,13 @@
  - [x] output name
 
 ## stub 
- - [ ] compilation  
- - [ ] read data put after the stub  
- - [ ] give stub to packer  
+ - [x] compilation  
+ - [x] read data put after the stub  
+ - [x] give stub to packer  
+ - [ ] get the decryption key
+ - [ ] decompress the data
+ - [ ] decrypt the data
+ - [ ] execute the code in memory
 
 ## encryption
  algorithm in assembly.

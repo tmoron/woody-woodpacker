@@ -1,37 +1,63 @@
 NAME = woody_woodpacker
 CC=clang
-FLAGS=-Werror -Wextra -Wall -g -Wno-unused-result -Qunused-arguments
+FLAGS=-Werror -Wextra -Wall -g
 
-SRCS_DIR = srcs/packer
-INCLUDES = -Iincludes -Ilibft
-OBJS_DIR = .objs
 
-SRCS =	main.c\
-		parsing.c
+OBJS_DIR = .objs/
+INCLUDES = -Ilibft
+INCLUDES_DIR = includes/
+SRCS_DIR = srcs/
 
-OBJS =	$(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
+
+PACKER_SUBDIR = packer/
+
+PACKER_SRCS =	main.c\
+				parsing.c
+
+PACKER_OBJS =	$(addprefix $(OBJS_DIR)$(PACKER_SUBDIR),$(PACKER_SRCS:.c=.o))
+
+
+STUB_SUBDIR = stub/
+
+STUB_SRCS =	main.c
+
+STUB_OBJS =	$(addprefix $(OBJS_DIR)$(STUB_SUBDIR),$(STUB_SRCS:.c=.o))
+
+STUB=$(OBJS_DIR)$(STUB_SUBDIR)stub
+STUB_HEADER=$(OBJS_DIR)stub_code.h
+
 
 LIBFT = libft/libft.a
 
-all:
-	make -j$(shell nproc) $(NAME)
+all: $(NAME)
 
 bonus: all
+
+stub: $(STUB_HEADER)
+
+$(STUB): $(STUB_OBJS) $(LIBFT)
+	$(CC) $(FLAGS) -Llibft $(STUB_OBJS) -o $@ -lft
+
+$(STUB_HEADER): $(STUB)
+	xxd -n stub_code -i $< > $@
 
 $(LIBFT):
 	make -C libft
 
-$(NAME): $(OBJS_DIR) $(OBJS) $(LIBFT)
-	$(CC) $(FLAGS) -Llibft $(OBJS) -o $@ -lm -lft
+$(NAME): $(PACKER_OBJS) $(LIBFT)
+	$(CC) $(FLAGS) -Llibft $(PACKER_OBJS) -o $@ -lft
 
-$(OBJS_DIR):
-	mkdir $(OBJS_DIR)
+$(OBJS_DIR)%/:
+	mkdir -p $@
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+$(OBJS_DIR)$(PACKER_SUBDIR)%.o: $(SRCS_DIR)$(PACKER_SUBDIR)%.c $(STUB_HEADER) $(OBJS_DIR)$(PACKER_SUBDIR)
+	$(CC) $(FLAGS) $(INCLUDES) -I$(INCLUDES_DIR)packer -I.objs -c $< -o $@
+
+$(OBJS_DIR)$(STUB_SUBDIR)%.o: $(SRCS_DIR)$(STUB_SUBDIR)%.c  $(OBJS_DIR)$(STUB_SUBDIR)
+	$(CC) $(FLAGS) $(INCLUDES) -I$(INCLUDES_DIR)stub -c $< -o $@
 
 clean:
-	rm -rf $(OBJS_DIR) 
+	rm -rf $(OBJS_DIR)
 	make -C libft fclean
 
 fclean: clean
