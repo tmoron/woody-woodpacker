@@ -8,11 +8,13 @@
 #include <stdint.h>
 #include "libft.h"
 #include "elf.h"
+#include "settings.h"
 
 typedef struct s_settings
 {
 	char *key;
 	char *output;
+	char *program;
 } t_settings;
 
 #include "parsing.h"

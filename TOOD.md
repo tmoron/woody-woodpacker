@@ -1,16 +1,9 @@
-# parsing
+# packer
+
 ## options parsing
  - [x] key  
  - [x] output name
-
-## stub 
- - [x] compilation  
- - [x] read data put after the stub  
- - [x] give stub to packer  
- - [ ] get the decryption key
- - [ ] decompress the data
- - [ ] decrypt the data
- - [ ] execute the code in memory
+ - [ ] name of file to pack
 
 ## encryption
  algorithm in assembly.
@@ -20,6 +13,17 @@
 ## compression
  assembly also.
  - [ ] Deflate  
+ - [ ] huffman tree
+ - [ ] LZ77
 
-## other
+# stub 
+ - [x] compilation  
+ - [x] read data put after the stub  
+ - [x] give stub to packer  
+ - [ ] get the decryption key
+ - [ ] decompress the data
+ - [ ] decrypt the data
+ - [ ] execute the code in memory
+
+# other
  - [ ] benchmark ?  

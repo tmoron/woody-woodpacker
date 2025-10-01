@@ -12,7 +12,8 @@ SRCS_DIR = srcs/
 PACKER_SUBDIR = packer/
 
 PACKER_SRCS =	main.c\
-				parsing.c
+				parsing.c\
+				compression/compress_data.c
 
 PACKER_OBJS =	$(addprefix $(OBJS_DIR)$(PACKER_SUBDIR),$(PACKER_SRCS:.c=.o))
 
@@ -47,13 +48,12 @@ $(LIBFT):
 $(NAME): $(PACKER_OBJS) $(LIBFT)
 	$(CC) $(FLAGS) -Llibft $(PACKER_OBJS) -o $@ -lft
 
-$(OBJS_DIR)%/:
-	mkdir -p $@
-
-$(OBJS_DIR)$(PACKER_SUBDIR)%.o: $(SRCS_DIR)$(PACKER_SUBDIR)%.c $(STUB_HEADER) $(OBJS_DIR)$(PACKER_SUBDIR)
+$(OBJS_DIR)$(PACKER_SUBDIR)%.o: $(SRCS_DIR)$(PACKER_SUBDIR)%.c $(STUB_HEADER)
+	@mkdir -p "$(shell dirname $@)"
 	$(CC) $(FLAGS) $(INCLUDES) -I$(INCLUDES_DIR)packer -I.objs -c $< -o $@
 
-$(OBJS_DIR)$(STUB_SUBDIR)%.o: $(SRCS_DIR)$(STUB_SUBDIR)%.c  $(OBJS_DIR)$(STUB_SUBDIR)
+$(OBJS_DIR)$(STUB_SUBDIR)%.o: $(SRCS_DIR)$(STUB_SUBDIR)%.c
+	@mkdir -p "$(shell dirname $@)"
 	$(CC) $(FLAGS) $(INCLUDES) -I$(INCLUDES_DIR)stub -c $< -o $@
 
 clean:

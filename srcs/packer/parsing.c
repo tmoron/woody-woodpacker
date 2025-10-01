@@ -26,9 +26,14 @@ void set_defaults(t_settings *set)
 	set->key = gen_key();
 }
 
-t_settings parse_options(int argc, char **argv)
+void free_settings(t_settings *set)
 {
-	t_settings set;
+	free(set->output);
+	free(set->key);
+}
+
+int parse_options(int argc, char **argv, t_settings *set)
+{
 	int arg;
 	struct option opts[] = 
 	{
@@ -37,21 +42,29 @@ t_settings parse_options(int argc, char **argv)
 		{"help", no_argument, 0, 'h'}
 	};
 
-	ft_bzero(&set, sizeof(t_settings));
-	set_defaults(&set);
+	ft_bzero(set, sizeof(t_settings));
+	set_defaults(set);
 	while((arg = getopt_long(argc, argv, "k:o:h", opts, NULL)) != -1)
 	{
 		switch(arg) {
 			case 'k':
-				get_string(optarg, &set.key);
+				get_string(optarg, &set->key);
 				break;
 			case 'o':
-				get_string(optarg, &set.output);
+				get_string(optarg, &set->output);
 				break;
 			case 'h':
 			default:
 				show_help();
+				return (0);
 		}
 	}
-	return(set);
+	if (optind != argc - 1)
+	{
+		fprintf(stderr, "error: exactly one program name is required\n");
+		show_help();
+		return (0);
+	}
+	set->program = argv[optind];
+	return(1);
 }

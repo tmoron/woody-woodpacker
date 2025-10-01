@@ -1,0 +1,6 @@
+#ifndef SETTINGS_H
+#define SETTINGS_H
+
+#define COMPRESSION_BLOC_SIZE 16384
+
+#endif //SETTINGS_H

@@ -4,6 +4,7 @@
 #include <getopt.h>
 #include "woody_woodpacker.h"
 
-t_settings parse_options(int argc, char **argv);
+int parse_options(int argc, char **argv, t_settings *set);
+void free_settings(t_settings *set);
 
 #endif //PARSING_H
