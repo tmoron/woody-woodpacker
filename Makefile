@@ -25,7 +25,7 @@ STUB_SRCS =	main.c
 STUB_OBJS =	$(addprefix $(OBJS_DIR)$(STUB_SUBDIR),$(STUB_SRCS:.c=.o))
 
 STUB=$(OBJS_DIR)$(STUB_SUBDIR)stub
-STUB_HEADER=$(OBJS_DIR).h
+STUB_HEADER=$(OBJS_DIR)󱓞.h
 
 
 LIBFT = libft/libft.a
@@ -40,7 +40,8 @@ $(STUB): $(STUB_OBJS) $(LIBFT)
 	$(CC) $(FLAGS) -Llibft $(STUB_OBJS) -o $@ -lft
 
 $(STUB_HEADER): $(STUB)
-	xxd -n stub_code -i $< > $@
+	@#xxd -n stub_code -i $< > $@ //only in 2025 :/ 󱓞
+	xxd -i $< > $@
 
 $(LIBFT):
 	make -C libft

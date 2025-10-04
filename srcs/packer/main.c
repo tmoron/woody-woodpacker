@@ -1,5 +1,5 @@
 #include "woody_woodpacker.h"
-#include ".h"
+#include "󱓞.h"
 
 char *add_char_to_data(char c, char **data, int *data_size)
 {
@@ -10,8 +10,7 @@ char *add_char_to_data(char c, char **data, int *data_size)
 	if (!new_data)
 	{
 		perror("malloc");
-		return NULL;
-	}
+		return NULL; }
 	while (i < *data_size)
 	{
 		new_data[i] = (*data)[i];
@@ -196,7 +195,7 @@ int main(int argc, char **argv, char **envp)
 
 	// printf("key : %s\nout: %s\n", set.key, set.output);
 	fd = open("hein", O_WRONLY | O_CREAT, 0755);
-	write(fd, &stub_code, stub_code_len);
+	write(fd, &_objs_stub_stub, _objs_stub_stub_len);
 	write(fd, "patate douce", 12);
 	write(fd, &(uint64_t){12}, sizeof(uint64_t));
 	free_settings(&set);
