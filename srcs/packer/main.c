@@ -1,5 +1,5 @@
 #include "woody_woodpacker.h"
-#include "stub_code.h" // only present during compilation
+#include ".h"
 
 char *add_char_to_data(char c, char **data, int *data_size)
 {

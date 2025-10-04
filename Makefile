@@ -25,7 +25,7 @@ STUB_SRCS =	main.c
 STUB_OBJS =	$(addprefix $(OBJS_DIR)$(STUB_SUBDIR),$(STUB_SRCS:.c=.o))
 
 STUB=$(OBJS_DIR)$(STUB_SUBDIR)stub
-STUB_HEADER=$(OBJS_DIR)stub_code.h
+STUB_HEADER=$(OBJS_DIR).h
 
 
 LIBFT = libft/libft.a
