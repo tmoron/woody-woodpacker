@@ -178,26 +178,43 @@ void read_file(int fd)
 	close(fd);
 }
 
+uint64_t handle_data_bloc(t_settings *set, uint8_t *buf, uint64_t read_len)
+{
+	char *res;
+
+	(void)res;
+	(void)buf;
+	(void)set;
+	(void)read_len;
+	// compress_data, if read_len is 0, early bloc end
+	// if not buf, exit early
+	// encrypt the data
+	// write data to fd and return written len
+	return(0);
+}
+
 int main(int argc, char **argv, char **envp)
 {
 	t_settings set;
-	// uint8_t *data;
-	int fd;
+	uint64_t written_len;
+	uint64_t read_len;
+	uint8_t *buf;
 
-	if (!parse_options(argc, argv, &set))
+	if (!get_options(argc, argv, &set))
 	{
 		free_settings(&set);
 		return (1);
 	}
 
-	fd = open(set.program, O_RDONLY);
-	read_file(fd);
-
-	// printf("key : %s\nout: %s\n", set.key, set.output);
-	fd = open("hein", O_WRONLY | O_CREAT, 0755);
-	write(fd, &_objs_stub_stub, _objs_stub_stub_len);
-	write(fd, "patate douce", 12);
-	write(fd, &(uint64_t){12}, sizeof(uint64_t));
+	read_len = -1;
+	written_len = 0;
+	write(set.out_fd, &_objs_stub_stub, _objs_stub_stub_len);
+	while (read_len)
+	{
+		read_len = read(set.in_fd, &buf, READ_LEN);
+		written_len = handle_data_bloc(&set, buf, read_len);
+	}
+	write(set.out_fd, &written_len, sizeof(written_len));
 	free_settings(&set);
 	(void)envp;
 	return (0);

@@ -13,8 +13,10 @@
 typedef struct s_settings
 {
 	char *key;
-	char *output;
-	char *program;
+	char *output_name;
+
+	int in_fd;
+	int out_fd;
 } t_settings;
 
 #include "parsing.h"

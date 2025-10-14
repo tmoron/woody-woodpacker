@@ -2,5 +2,6 @@
 #define SETTINGS_H
 
 #define COMPRESSION_BLOC_SIZE 16384
+#define READ_LEN 8192
 
 #endif //SETTINGS_H

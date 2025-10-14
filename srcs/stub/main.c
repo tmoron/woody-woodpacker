@@ -9,9 +9,10 @@ int main(int argc, char **argv)
 	uint64_t	payload_len;
 	char		*buffer;
 
+	(void)argv;
 	if(!argc)
 		return (1);
-	int fd = open(argv[0], O_RDONLY);
+	int fd = open("/proc/self/exe", O_RDONLY);
 	if(lseek(fd, -8, SEEK_END) == -1)
 	{
 		write(2, "error, invalid file\n", 20);
