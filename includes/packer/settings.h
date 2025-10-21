@@ -2,6 +2,7 @@
 #define SETTINGS_H
 
 #define COMPRESSION_BLOC_SIZE 16384
+#define SLIDING_WINDOW_SIZE 32768 // max : 32768
 #define READ_LEN 8192
 
 #endif //SETTINGS_H

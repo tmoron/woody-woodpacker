@@ -1,6 +1,7 @@
 .objs/
 woody_woodpacker
 compile_commands.json
+docs/
 .cache/
 .vscode/
 *.o

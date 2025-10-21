@@ -1,12 +1,25 @@
 #include "woody_woodpacker.h"
 
-uint8_t *compress_data(uint8_t *data)
+t_compr_ctx	*compression_init(int fd)
 {
-	uint8_t *buffer;
+	t_compr_ctx	*res;
 
-	(void)data;
-	buffer = malloc(COMPRESSION_BLOC_SIZE);
-	if(!buffer)
-		return(0);
-	return(buffer);
+	res = malloc(sizeof(t_compr_ctx));
+	if(!res)
+		return (0);
+
+	ft_bzero(res, sizeof(t_compr_ctx));
+	res->out_fd = fd;
+	return (res);
+}
+
+void	compression_end(t_compr_ctx *ctx)
+{
+	free(ctx);
+}
+
+int	compress_data(t_compr_ctx *ctx, uint8_t *data, uint64_t len)
+{
+	if(!ctx)
+		return(1)
 }

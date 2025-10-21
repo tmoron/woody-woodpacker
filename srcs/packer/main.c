@@ -190,6 +190,7 @@ uint64_t handle_data_bloc(t_settings *set, uint8_t *buf, uint64_t read_len)
 	// if not buf, exit early
 	// encrypt the data
 	// write data to fd and return written len
+	compress_data(buf, read_len);
 	return(0);
 }
 
@@ -199,6 +200,7 @@ int main(int argc, char **argv, char **envp)
 	uint64_t written_len;
 	uint64_t read_len;
 	uint8_t *buf;
+	t_compr_ctx *compression;
 
 	if (!get_options(argc, argv, &set))
 	{
@@ -209,11 +211,13 @@ int main(int argc, char **argv, char **envp)
 	read_len = -1;
 	written_len = 0;
 	write(set.out_fd, &_objs_stub_stub, _objs_stub_stub_len);
+	compression = compression_init(set.out_fd);
 	while (read_len)
 	{
 		read_len = read(set.in_fd, &buf, READ_LEN);
 		written_len = handle_data_bloc(&set, buf, read_len);
 	}
+	compression_end(compression);
 	write(set.out_fd, &written_len, sizeof(written_len));
 	free_settings(&set);
 	(void)envp;

@@ -1,0 +1,9 @@
+PROJECT_NAME = "woody-woodpacker"
+
+OUTPUT_DIRECTORY="docs"
+INPUT = "."
+
+FILE_PATTERNS= *.c *.h
+
+EXCLUDE_PATTERNS = .objs/*
+RECURSIVE=YES
