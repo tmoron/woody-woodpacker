@@ -57,8 +57,12 @@ $(OBJS_DIR)$(STUB_SUBDIR)%.o: $(SRCS_DIR)$(STUB_SUBDIR)%.c
 	@mkdir -p "$(shell dirname $@)"
 	$(CC) $(FLAGS) $(INCLUDES) -I$(INCLUDES_DIR)stub -c $< -o $@
 
+docs:
+	doxygen .doxygen
+
 clean:
 	rm -rf $(OBJS_DIR)
+	rm -rf docs
 	make -C libft fclean
 
 fclean: clean
@@ -66,4 +70,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re all bonus
+.PHONY: clean fclean re all bonus docs
